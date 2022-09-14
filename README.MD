@@ -56,4 +56,10 @@ To get the ingress endpoint provisioned in ELB:
 kubectl get service  -n ingress-nginx
 ```
 
+Ensure you get back a `hello world` response:
+
+```bash
+STATIC_SERVER_LB=$(kubectl get service  -n ingress-nginx ingress-nginx-controller -o jsonpath="{.status.loadBalancer.ingress[*].hostname}")
+curl $STATIC_SERVER_LB
+```
 
