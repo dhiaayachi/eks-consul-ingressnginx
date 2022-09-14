@@ -36,7 +36,7 @@ Add configuration for Dialed Directly
 kubectl apply -f sd-direct.yaml
 ```
 
-Add configuration for ingress config to static-server
+Add configuration for ingress config to static-server. If there are issues with validating the ingress object see https://github.com/kubernetes/ingress-nginx/issues/5968 for workarounds. 
 ```bash
 kubectl apply -f ingress.yaml
 ```
