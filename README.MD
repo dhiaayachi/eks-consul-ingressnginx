@@ -1,5 +1,14 @@
 # Consul on EKS using nginx as ingress (transparent mode)
 
+## requirements
+- an AWS account and a region that support EKS
+- environment variables to access AWS account locally
+- `eksctl` installed locally
+- `kubectl` installed locally
+- `helm` installed locally
+
+## Installation
+
 Deploy an EKS cluster:
 
 ```bash
@@ -15,6 +24,7 @@ aws eks update-kubeconfig --region <region> --name <cluster name>
 Deploy Consul
 
 ```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
 helm install consul hashicorp/consul --values consul-values.yaml --create-namespace --namespace consul
 ```
 
@@ -25,6 +35,7 @@ kubectl apply -f denyall.yaml
 
 Deploy nginx ingress
 ```bash
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm upgrade --install ingress-nginx ingress-nginx \                                                                                                    ─╯
   --repo https://kubernetes.github.io/ingress-nginx \
   --namespace ingress-nginx --create-namespace --values nginxingress-values.yaml
